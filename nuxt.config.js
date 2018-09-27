@@ -42,8 +42,18 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    'nuxt-fontawesome',
   ],
+  fontawesome: {
+    component: 'fa',
+    // imports: [
+    //     {
+    //       set: '@fortawesome/free-solid-svg-icons',
+    //       icons: ['fas']
+    //     }
+    // ],
+  },
   /*
   ** Axios module configuration
   */
@@ -59,7 +69,8 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+      config.resolve.alias['@fortawesome/fontawesome-free-brands$'] = '@fortawesome/fontawesome-free-brands/shakable.es.js'
+      config.resolve.alias['@fortawesome/fontawesome-free-solid$'] = '@fortawesome/fontawesome-free-solid/shakable.es.js'
     }
   }
 }
