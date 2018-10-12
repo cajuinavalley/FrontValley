@@ -2,12 +2,12 @@
   <b-container fluid>
     <b-row  class="main">
       <b-col id="company-list" class="bg-info" cols="4" order="2">
-        <div class="card" v-for="startup in Startups">
+        <div class="card" v-for="startup in Startups" :key="startup">
           <card :data=startup></card>
         </div>
       </b-col>
       <b-col id="map" class="bg-warning" cols="8" order="2">
-        <maps></maps>
+        <maps :data=Startups></maps>
       </b-col>
     </b-row>
   </b-container>
