@@ -22,7 +22,8 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.0.0",
     "nuxt-fontawesome": "^0.3.0",
-    "vue2-google-maps": "^0.10.2"
+    "vue2-google-maps": "^0.10.2",
+    "vuex-persistedstate": "^1.4.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

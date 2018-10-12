@@ -33,6 +33,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~plugins/google-maps' }
   ],
 
   /*
@@ -47,12 +48,6 @@ module.exports = {
   ],
   fontawesome: {
     component: 'fa',
-    // imports: [
-    //     {
-    //       set: '@fortawesome/free-solid-svg-icons',
-    //       icons: ['fas']
-    //     }
-    // ],
   },
   /*
   ** Axios module configuration
