@@ -16,10 +16,10 @@
 		<b-card-footer>
 			<b-row>
 		        <b-col cols="8">
-	        		<fa v-b-popover.hover="data.phone" :title="data.city" :icon="fas.faMapMarkerAlt" style="color: #e31755; font-size: 25px"/>
+	        		<fa @click="$store.commit('setSelectedStartup', data)" v-b-popover.hover="data.phone" :title="data.city" :icon="fas.faMapMarkerAlt" style="color: #e31755; font-size: 25px"/>
 		        </b-col>
 		        <b-col align="right" cols="4">
-	        		<b-link v-if="data.facebook" 
+	        		<b-link v-if="data.facebook"
 	        				target="_blank" 
 	        				:href="'https://www.facebook.com/' + data.facebook">
 	        			<fa :icon="faFacebook" style="color: #209af2; font-size: 25px"/>
