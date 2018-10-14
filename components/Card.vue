@@ -1,38 +1,39 @@
 <template>
-	<b-card :img-src="data.logo"
-	        img-alt="Card image"
-	        img-left>
+  <b-card :img-src="data.logo"
+    img-alt="Card image"
+    img-left>
 
-	    <h6 slot="header" class="mb-0">{{data.name}}</h6>
-		<p slot="header" class="mb-0 sub-title">
-			{{data.mission}}
-		</p>
-		<b-card-body>
-			<p class="card-text">
-		        {{data.summary}}
-		    </p>
-		    <b-badge pill variant="primary">{{sector}}</b-badge>
-		</b-card-body>
-		<b-card-footer>
-			<b-row>
-		        <b-col cols="8">
-	        		<fa @click="$store.commit('setSelectedStartup', data)" v-b-popover.hover="data.phone" :title="data.city" :icon="fas.faMapMarkerAlt" style="color: #e31755; font-size: 25px"/>
-		        </b-col>
-		        <b-col align="right" cols="4">
-	        		<b-link v-if="data.facebook"
-	        				target="_blank" 
-	        				:href="'https://www.facebook.com/' + data.facebook">
-	        			<fa :icon="faFacebook" style="color: #209af2; font-size: 25px"/>
-	        		</b-link>
-	        		<b-link v-if="data.linkedin" 
-	        				target="_blank" 
-	        				:href="'https://www.linkedin.com/company/' + data.facebook">
-	        			<fa :icon="faLinkedin" style="color: #209af2; font-size: 25px"/>
-	        		</b-link>
-		        </b-col>
-    		</b-row>
-		</b-card-footer>
-	  </b-card>
+    <h6 slot="header" class="mb-0">{{data.name}}</h6>
+    <p slot="header" class="mb-0 sub-title">
+      {{data.mission}}
+    </p>
+    <b-card-body>
+      <p class="card-text">
+        {{data.summary}}
+      </p>
+      <b-badge pill variant="primary">{{sector}}</b-badge>
+    </b-card-body>
+    <b-card-footer>
+      <b-row>
+        <b-col cols="8">
+          <fa class="clickable-element" v-if="(data.lat + data.lon) != 0" @click="$store.commit('setSelectedStartup', data)" v-b-popover.hover="data.phone" :title="data.city" :icon="fas.faMapMarkerAlt" style="color: #e31755; font-size: 25px"/>
+          <fa v-else v-b-popover.hover="data.phone" :title="data.city" :icon="fas.faMapMarkerAlt" style="color: #e31755; font-size: 25px"/>
+        </b-col>
+        <b-col align="right" cols="4">
+          <b-link v-if="data.facebook"
+            target="_blank" 
+            :href="'https://www.facebook.com/' + data.facebook">
+            <fa :icon="faFacebook" style="color: #209af2; font-size: 25px"/>
+          </b-link>
+          <b-link v-if="data.linkedin" 
+            target="_blank" 
+            :href="'https://www.linkedin.com/company/' + data.facebook">
+            <fa :icon="faLinkedin" style="color: #209af2; font-size: 25px"/>
+          </b-link>
+        </b-col>
+      </b-row>
+    </b-card-footer>
+  </b-card>
 </template>
 
 <script>
@@ -45,36 +46,40 @@
 				sector: null
 			}
 		},
-	  	props: ['data'],
-	  	name: 'card',
-	    computed: {
-			fas () {
-	     		return fas
-	  		},
-	      	faFacebook () {
-		 		return faFacebook
-	      	},
-	      	faLinkedin () {
-	      		return faLinkedin
-	      	}
-	    },
-	    mounted () {
-	    	this.fillSector()
-	    },
-	    methods: {
-	    	fillSector() {
-	    		getSector(this.data.sector)
-	    			.then(rsp => {
-			            this.sector = rsp.name
-			          })
-	    	}
-	    }
+    props: ['data'],
+    name: 'card',
+    computed: {
+      fas () {
+        return fas
+      },
+      faFacebook () {
+        return faFacebook
+      },
+      faLinkedin () {
+        return faLinkedin
+      },
+    },
+    mounted () {
+      this.fillSector()
+    },
+    methods: {
+      fillSector() {
+        getSector(this.data.sector)
+          .then(rsp => {
+            this.sector = rsp.name
+          })
+      }
+    }
   }
 </script>
 
 <style>
 .social-links {
-	align-content: "center"
+	align-content: "center";
+}
+
+.clickable-element {
+	cursor: pointer;
 }
 
 .card {
