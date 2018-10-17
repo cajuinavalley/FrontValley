@@ -8,5 +8,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'http://142.93.117.60:8000/api/'
+  baseURL: 'http://cajuinavalley.canionlabs.io:8000/api/'
 })

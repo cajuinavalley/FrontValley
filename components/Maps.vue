@@ -1,26 +1,24 @@
 <template>
 	<GmapMap
-          :center.sync="mapPosition"
-          :zoom.sync="infoMap.zoom"
-          map-type-id="hybrid"
-          style="width: 100%; height: 100%"
-        >
-		<GmapMarker
-            :key="index"
-            v-for="(startup, index) in data"
-            :position="getPosition(startup)"
-            @click="$store.commit('setSelectedStartup', startup)"
-            icon="http://maps.google.com/mapfiles/kml/paddle/grn-stars-lv.png"
-		>
-		</GmapMarker>
-		<GmapInfoWindow
-			:opened="infoBox" 
-			@closeclick="closeInfo()"
-			:position="$store.state.actualStartup ? $store.state.actualStartup.position: infoWindow.position"
-		>
-		{{infoText}}
-		</GmapInfoWindow>
-    </GmapMap>
+    :center.sync="mapPosition"
+    :zoom.sync="infoMap.zoom"
+    map-type-id="hybrid"
+    style="width: 100%; height: 100%"
+  >
+    <GmapMarker
+      :key="index"
+      v-for="(startup, index) in data"
+      :position="getPosition(startup)"
+      @click="$store.commit('setSelectedStartup', startup)"
+      icon="http://maps.google.com/mapfiles/kml/paddle/grn-stars-lv.png">
+    </GmapMarker>
+    <GmapInfoWindow
+      :opened="infoBox" 
+      @closeclick="closeInfo()"
+      :position="$store.state.actualStartup ? $store.state.actualStartup.position: infoWindow.position">
+      {{infoText}}
+    </GmapInfoWindow>
+  </GmapMap>
 </template>
 
 <script>
@@ -46,7 +44,6 @@
 					return this.infoMap.position
 				}
 				return this.$store.state.actualStartup.position
-
 			},
 			selectedStartup(){
 			    return this.$store.state.selectedStartup
